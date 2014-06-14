@@ -14,10 +14,13 @@ namespace StringCalculator
         public int Add(string numbers)
         {
             var sum = 0;
-            int number = 0;
-            if (int.TryParse(numbers, out number))
-                return number;
-            return 0;
+            foreach (var stringPart in numbers.Split(new[] { ',' }))
+            {
+                var number = 0;
+                if (int.TryParse(stringPart, out number))
+                    sum += number;
+            }
+            return sum;
         }
     }
 }

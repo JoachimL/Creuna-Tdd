@@ -33,5 +33,6 @@ namespace StringCalculator.UnitTests
         {
             _sut.Add("1,2").ShouldEqual(3);
         }
+
     }
 }
