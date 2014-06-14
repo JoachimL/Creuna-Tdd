@@ -18,5 +18,18 @@ namespace StringCalculator.UnitTests
         {
             _sut.Add(string.Empty).ShouldEqual(0);
         }
+
+        [Test]
+        public void Number_1_returns_1()
+        {
+            _sut.Add("1").ShouldEqual(1);
+        }
+
+        [Test]
+        public void Number_2_returns_2()
+        {
+            _sut.Add("2").ShouldEqual(2);
+        }
+
     }
 }
