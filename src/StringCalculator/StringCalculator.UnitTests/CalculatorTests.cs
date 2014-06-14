@@ -16,7 +16,7 @@ namespace StringCalculator.UnitTests
         [Test]
         public void An_empty_string_returns_0()
         {
-            
+            _sut.Add(string.Empty).ShouldEqual(0);
         }
     }
 }
