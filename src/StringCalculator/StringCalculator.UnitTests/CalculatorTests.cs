@@ -1,4 +1,5 @@
-﻿using Ploeh.AutoFixture;
+﻿using System.Linq;
+using Ploeh.AutoFixture;
 using Should;
 using NUnit.Framework;
 
@@ -34,5 +35,11 @@ namespace StringCalculator.UnitTests
             _sut.Add("1,2").ShouldEqual(3);
         }
 
+        [Test]
+        public void Arbitray_number_of_comma_separated_numbers_returns_the_sum_of_the_numbers()
+        {
+            var numbers = Fixture.CreateMany<int>();
+            _sut.Add(string.Join(",", numbers)).ShouldEqual(numbers.Sum());
+        }
     }
 }
