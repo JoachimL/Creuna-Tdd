@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Ploeh.AutoFixture;
 using Should;
 using NUnit.Framework;
@@ -40,6 +41,13 @@ namespace StringCalculator.UnitTests
         {
             var numbers = Fixture.CreateMany<int>();
             _sut.Add(string.Join(",", numbers)).ShouldEqual(numbers.Sum());
+        }
+
+        [Test]
+        public void Numbers_can_be_delimited_by_line_breaks()
+        {
+            var numbers = "1" + Environment.NewLine + "2";
+            _sut.Add(numbers).ShouldEqual(3);
         }
     }
 }
