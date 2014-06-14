@@ -13,8 +13,12 @@ namespace StringCalculator
 
         public int Add(string numbers)
         {
+            var delimiters = new[] { ",", Environment.NewLine };
+            if (numbers.StartsWith("//"))
+                delimiters = new[] { numbers.Split(new[] { Environment.NewLine }, StringSplitOptions.None).First().Substring(2) };
+
             return numbers
-                .Split(new[] { ",", Environment.NewLine }, StringSplitOptions.None)
+                .Split(delimiters, StringSplitOptions.None)
                 .Sum(n => GetNumberFromString(n));
         }
 

@@ -56,7 +56,13 @@ namespace StringCalculator.UnitTests
             var delimiter = Fixture.Create<string>();
             var numbers = Fixture.CreateMany<int>();
             var numberLine = string.Join(delimiter, numbers);
-            _sut.Add(string.Concat(delimiter, Environment.NewLine, numberLine)).ShouldEqual(numbers.Sum());
+            _sut.Add(string.Concat("//", delimiter, Environment.NewLine, numberLine)).ShouldEqual(numbers.Sum());
+        }
+
+        [Test]
+        public void Semicolon_can_be_used_as_delimiter()
+        {
+            _sut.Add(string.Concat("//;" + Environment.NewLine + "2;2")).ShouldEqual(4);
         }
     }
 }
