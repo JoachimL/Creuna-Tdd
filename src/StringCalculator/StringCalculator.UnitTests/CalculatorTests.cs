@@ -49,5 +49,14 @@ namespace StringCalculator.UnitTests
             var numbers = "1" + Environment.NewLine + "2";
             _sut.Add(numbers).ShouldEqual(3);
         }
+
+        [Test]
+        public void First_line_can_change_delimiter()
+        {
+            var delimiter = Fixture.Create<string>();
+            var numbers = Fixture.CreateMany<int>();
+            var numberLine = string.Join(delimiter, numbers);
+            _sut.Add(string.Concat(delimiter, Environment.NewLine, numberLine)).ShouldEqual(numbers.Sum());
+        }
     }
 }

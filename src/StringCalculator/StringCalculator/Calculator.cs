@@ -13,12 +13,16 @@ namespace StringCalculator
 
         public int Add(string numbers)
         {
-            return numbers.Split(new[] {",", Environment.NewLine}, StringSplitOptions.None).Sum(n =>
-            {
-                var number = 0;
-                int.TryParse(n, out number);
-                return number;
-            });
+            return numbers
+                .Split(new[] { ",", Environment.NewLine }, StringSplitOptions.None)
+                .Sum(n => GetNumberFromString(n));
+        }
+
+        private static int GetNumberFromString(string n)
+        {
+            var number = 0;
+            int.TryParse(n, out number);
+            return number;
         }
     }
 }
