@@ -13,13 +13,21 @@ namespace StringCalculator
 
         public int Add(string numbers)
         {
-            var delimiters = new[] { ",", Environment.NewLine };
-            if (numbers.StartsWith("//"))
-                delimiters = new[] { numbers.Split(new[] { Environment.NewLine }, StringSplitOptions.None).First().Substring(2) };
-
-            return numbers
-                .Split(delimiters, StringSplitOptions.None)
+            return GetNumberValuesFromString(numbers)
                 .Sum(n => GetNumberFromString(n));
+        }
+
+        private static IEnumerable<string> GetNumberValuesFromString(string numbers)
+        {
+            return numbers
+                .Split(GetDelimiters(numbers), StringSplitOptions.None);
+        }
+
+        private static string[] GetDelimiters(string numbers)
+        {
+            if (numbers.StartsWith("//"))
+                return new[] {numbers.Split(new[] {Environment.NewLine}, StringSplitOptions.None).First().Substring(2)};
+            return new[] {",", Environment.NewLine};
         }
 
         private static int GetNumberFromString(string n)

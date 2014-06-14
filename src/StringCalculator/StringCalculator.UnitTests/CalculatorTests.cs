@@ -62,7 +62,7 @@ namespace StringCalculator.UnitTests
         [Test]
         public void Semicolon_can_be_used_as_delimiter()
         {
-            _sut.Add(string.Concat("//;" + Environment.NewLine + "2;2")).ShouldEqual(4);
+            _sut.Add(string.Concat("//;", Environment.NewLine,"2;2")).ShouldEqual(4);
         }
     }
 }
