@@ -13,7 +13,7 @@ namespace StringCalculator
 
         public int Add(string numbers)
         {
-            return numbers.Split(new[] {','}).Sum(n =>
+            return numbers.Split(new[] {",", Environment.NewLine}, StringSplitOptions.None).Sum(n =>
             {
                 var number = 0;
                 int.TryParse(n, out number);
