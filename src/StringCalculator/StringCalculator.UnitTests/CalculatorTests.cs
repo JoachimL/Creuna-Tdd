@@ -27,5 +27,11 @@ namespace StringCalculator.UnitTests
             var value = Fixture.Create<int>();
             _sut.Add(value.ToString()).ShouldEqual(value);
         }
+
+        [Test]
+        public void A_string_containing_1_and_2_returns_3()
+        {
+            _sut.Add("1,2").ShouldEqual(3);
+        }
     }
 }
