@@ -22,7 +22,7 @@ namespace StringCalculator
         {
             var sum = GetNumberValuesFromString(numbers)
                 .Sum(n => GetNumberFromString(n));
-            if(!_calculationAggregator.PostResults(1))
+            if(!_calculationAggregator.PostResults(sum))
                 throw new Exception();
             return sum;
         }

@@ -78,5 +78,17 @@ namespace StringCalculator.UnitTests
                 .Returns(false);
             _sut.Add("1");
         }
+
+        [Test]
+        public void Calculations_are_posted_to_the_aggregator()
+        {
+            _calculationAggregatorMock.Setup(
+                ca => ca.PostResults(It.IsAny<int>()))
+                .Returns(false);
+            _calculationAggregatorMock.Setup(
+                ca => ca.PostResults(3))
+                .Returns(true);
+            _sut.Add("1,2");
+        }
     }
 }
