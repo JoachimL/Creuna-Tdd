@@ -17,6 +17,7 @@ namespace StringCalculator.UnitTests
         public void SetUp()
         {
             _calculationAggregatorMock = new Mock<ICalculationAggregator>();
+            _calculationAggregatorMock.Setup(c => c.PostResults(It.IsAny<int>())).Returns(true);
             _sut = new Calculator(_calculationAggregatorMock.Object);
         }
 
