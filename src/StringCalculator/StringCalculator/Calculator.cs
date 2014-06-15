@@ -10,6 +10,13 @@ namespace StringCalculator
 {
     public class Calculator
     {
+        private readonly ICalculationAggregator calculationAggregator;
+
+        public Calculator(ICalculationAggregator calculationAggregator)
+        {
+            this.calculationAggregator = calculationAggregator;
+        }
+
         public int Add(string numbers)
         {
             return GetNumberValuesFromString(numbers)

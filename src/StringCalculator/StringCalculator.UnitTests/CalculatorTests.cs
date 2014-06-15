@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Moq;
 using Ploeh.AutoFixture;
 using Should;
 using NUnit.Framework;
@@ -9,12 +10,14 @@ namespace StringCalculator.UnitTests
     public class CalculatorTests
     {
         private static Fixture Fixture = new Fixture();
+        private Mock<ICalculationAggregator> _calculationAggregatorMock;
         private Calculator _sut;
 
         [SetUp]
         public void SetUp()
         {
-            _sut = new Calculator();
+            _calculationAggregatorMock = new Mock<ICalculationAggregator>();
+            _sut = new Calculator(_calculationAggregatorMock.Object);
         }
 
         [Test]
@@ -62,7 +65,17 @@ namespace StringCalculator.UnitTests
         [Test]
         public void Semicolon_can_be_used_as_delimiter()
         {
-            _sut.Add(string.Concat("//;", Environment.NewLine,"2;2")).ShouldEqual(4);
+            _sut.Add(string.Concat("//;", Environment.NewLine, "2;2")).ShouldEqual(4);
+        }
+
+        [Test]
+        [ExpectedException]
+        public void An_exception_is_thrown_if_the_calculation_aggregator_post_returns_false()
+        {
+            _calculationAggregatorMock
+                .Setup(c => c.PostResults(It.IsAny<int>()))
+                .Returns(false);
+            _sut.Add("1");
         }
     }
 }
