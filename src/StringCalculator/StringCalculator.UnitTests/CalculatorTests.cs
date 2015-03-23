@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 using Moq;
+using NUnit.Framework;
 using Ploeh.AutoFixture;
 using Should;
-using NUnit.Framework;
 
-namespace StringCalculator.UnitTests
+namespace StringCalculator
 {
     public class CalculatorTests
     {

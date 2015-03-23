@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StringCalculator
 {
@@ -15,7 +10,7 @@ namespace StringCalculator
 
         public Calculator(ICalculationAggregator calculationAggregator)
         {
-            this._calculationAggregator = calculationAggregator;
+            _calculationAggregator = calculationAggregator;
         }
 
         public int Add(string numbers)
